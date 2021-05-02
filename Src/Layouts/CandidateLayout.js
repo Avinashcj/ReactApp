@@ -1,28 +1,48 @@
-import React, { Component } from 'react'
-import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
-// import { View, Text, Alert, Button, TextInput, TouchableOpacity,Header } from 'react-native';
-//import { Link } from "react-router-dom";
-// import { Button, Icon, Menu } from "antd";
-import logo from '../../assets/tnsdc-logo1.jpg';
+import * as React from 'react';
+import { Text, View ,Button, Alert} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-class CandidateLayout extends Component {
-render() {
-const value = AsyncStorage.getItem('@storage_Key');
-return (
+
+function HomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Home!</Text>
+    </View>
+  );
+}
 
 
-        // <Header className="app-header">
-          <div className="app-header__logo-search-section">
-            <div className="app-header__logo">
-            <img src={logo} alt="App logo" />
-            <View>
-            <Text  >Welcome {this.props.FirstName}</Text> 
-            </View>
-            </div>
-          </div>
-        // </Header>
-    
-);
-  }
-  }
-  export default CandidateLayout;
+
+function SettingsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+     <View>
+            <Text  >Welcome</Text>
+            <Button onPress={AsyncStorage.clear()}>
+              <Text>Clear Async Storage</Text>
+            </Button>
+    </View>
+    </View>
+  );
+}
+
+const Tab = createBottomTabNavigator();
+
+function MyTabs() {
+
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Logout" component={SettingsScreen}  />
+    </Tab.Navigator>
+  );
+}
+
+export default function CandidateLayout() {
+  return (
+    <NavigationContainer>
+      <MyTabs />
+    </NavigationContainer>
+  );
+}
