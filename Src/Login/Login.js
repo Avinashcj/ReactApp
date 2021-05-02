@@ -74,7 +74,7 @@ class Login extends Component {
           AsyncStorage.setItem('@storage_Key', decoded.aud)
           const value = AsyncStorage.getItem('@storage_Key')
           this.setState({FirstName:decoded.aud})
-          alert(this.state.FirstName);
+          //alert(this.state.FirstName);
 
         });
 
@@ -169,6 +169,12 @@ class Login extends Component {
         
         <View>
           <Text  >Welcome {this.state.FirstName}</Text>
+         
+           
+              {/* <Text  onPress={alert('clicked on logout')} >
+                Logout </Text> */}
+          
+          
         </View>
       );
     }
