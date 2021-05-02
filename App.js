@@ -8,12 +8,7 @@ import Login from './Src/Login/Login.js'
   render() {
     return (
          <Login/>
-         //changes
-         //new chages
-         //hai
-    //  <view>
-    //    <Text>n</Text>
-    //  </view>
+         
     );
   }
 }

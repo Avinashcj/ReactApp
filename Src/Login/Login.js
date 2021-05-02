@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
-// import Home from './Home';
-  class Login extends Component {
+import jwt_decode from 'jwt-decode';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+class Login extends Component {
+
+  constructor(){
+    super()
+    this.Login = this.Login.bind(this);
+    this.storeData = this.storeData.bind(this);
+  }
   state = {
     username: '',
     password: '',
     auth_token: '',
-    token: ''
+    token: '',
+    decodevalue: [],
+    FirstName: ''
+
   }
   Signup = async () => {
     var myHeaders = new Headers();
@@ -29,7 +39,9 @@ import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-na
       .then(data => {
 
         this.setState({ token: data.token });
-        alert("You have succesfully signed up");
+        var token = data.token;
+        var decoded = jwt_decode(token);
+        alert(decoded);
 
       });
   }
@@ -54,9 +66,15 @@ import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-na
       fetch("https://localhost:44372/users/authenticate", requestOptions)
         .then(response => response.json())
         .then(data => {
-
           this.setState({ token: data.token });
-          alert("You have succesfully signed up");
+          var token = data.token;
+          var decoded = jwt_decode(token);
+          console.log(decoded.id);
+          //this.storeData(this.decoded);
+          AsyncStorage.setItem('@storage_Key', decoded.aud)
+          const value = AsyncStorage.getItem('@storage_Key')
+          this.setState({FirstName:decoded.aud})
+          alert(this.state.FirstName);
 
         });
 
@@ -65,6 +83,16 @@ import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-na
       alert('please enter user name and password');
     }
 
+  }
+   
+  storeData = async (value) => {
+    try {
+      await AsyncStorage.setItem('@storage_Key', value.id)
+      const value = await AsyncStorage.getItem('@storage_Key')
+      alert(value);
+    } catch (e) {
+      // saving error
+    }
   }
 
   render() {
@@ -138,8 +166,9 @@ import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-na
     else {
       return (
         // <Home />
+        
         <View>
-          <Text>Login Successful</Text>
+          <Text  >Welcome {this.state.FirstName}</Text>
         </View>
       );
     }
