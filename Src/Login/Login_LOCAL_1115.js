@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CandidateLayout from '../Layouts/CandidateLayout.js'
 class Login extends Component {
 
   constructor(){
@@ -167,12 +166,16 @@ class Login extends Component {
     else {
       return (
         // <Home />
-
         
-        <CandidateLayout FirstName={this.state.FirstName}/>
-        // <View>
-        //   <Text  >Welcome {this.state.FirstName}</Text>
-        // </View>
+        <View>
+          <Text  >Welcome {this.state.FirstName}</Text>
+         
+           
+              {/* <Text  onPress={alert('clicked on logout')} >
+                Logout </Text> */}
+          
+          
+        </View>
       );
     }
   }
