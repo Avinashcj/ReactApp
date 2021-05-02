@@ -42,7 +42,7 @@ function MyTabs() {
 export default function CandidateLayout() {
   return (
     <NavigationContainer>
-      <MyTabs />
+      <MyTabs  value={this.props.FirstName} />
     </NavigationContainer>
   );
 }
