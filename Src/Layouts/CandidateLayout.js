@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { Component } from 'react'
 import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
 import logo from '../../assets/tnsdc-logo1.jpg';
@@ -56,7 +55,6 @@ function App1() {
   }
   }
   export default CandidateLayout;
-=======
 import * as React from 'react';
 import { Text, View ,Button, Alert} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -105,4 +103,5 @@ export default function CandidateLayout() {
     </NavigationContainer>
   );
 }
->>>>>>> b3ffd420c7c46121ab5cae9a889895ab02c91062
+=======
+>>>>>>> 37c4e1e2f3c41d535b41f839d3ee3e228005c8f3

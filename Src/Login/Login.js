@@ -1,13 +1,8 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react'
-<<<<<<< Updated upstream
 import { StyleSheet,View, Text, Alert, Button, TextInput, TouchableOpacity,StatusBar,Image ,ImageBackground} from 'react-native';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-<<<<<<< HEAD
-import CandidateLayout from '../Layouts/CandidateLayout.js';
-import Dashboard from '../Dashboard/Dashboard.js';
-=======
 import CandidateLayout from '../Layouts/CandidateLayout.js'
 import ForgotPassword from '../ForgotPassword/ForgotPassword.js';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,7 +11,6 @@ import { BrowserRouter } from 'react-router-dom';
 const Stack = createStackNavigator();
 
 
->>>>>>> 53c5bda6bcf19e17fd0f7f9a2901a5b588388288
 class Login extends Component {
 
 
@@ -31,12 +25,6 @@ class Login extends Component {
     this.Login = this.Login.bind(this);
     this.storeData = this.storeData.bind(this);
   }
-=======
-import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
-import CandidateLayout from '../Layouts/CandidateLayout.js';
-// import Home from './Home';
-  class Login extends Component {
->>>>>>> Stashed changes
   state = {
     username: '',
     password: '',
@@ -96,7 +84,6 @@ import CandidateLayout from '../Layouts/CandidateLayout.js';
         .then(response => response.json())
         .then(data => {
           this.setState({ token: data.token });
-<<<<<<< Updated upstream
           var token = data.token;
           var decoded = jwt_decode(token);
           console.log(decoded.id);
@@ -104,16 +91,11 @@ import CandidateLayout from '../Layouts/CandidateLayout.js';
           AsyncStorage.setItem('@storage_Key', decoded.aud)
          
           this.setState({FirstName:decoded.aud})
-<<<<<<< HEAD
-         // alert(this.state.FirstName);
-=======
-          //alert(this.state.FirstName);
->>>>>>> b3ffd420c7c46121ab5cae9a889895ab02c91062
 
-=======
-          alert("You have succesfully signed up");
-<CandidateLayout/>
->>>>>>> Stashed changes
+         // alert(this.state.FirstName);
+          //alert(this.state.FirstName);
+
+
         });
 
     }
@@ -260,6 +242,7 @@ import CandidateLayout from '../Layouts/CandidateLayout.js';
     else {
       return (
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         <CandidateLayout FirstName={this.state.FirstName}/>
         // <Dashboard/>
@@ -276,6 +259,10 @@ import CandidateLayout from '../Layouts/CandidateLayout.js';
         <CandidateLayout></CandidateLayout>
 >>>>>>> Stashed changes
 >>>>>>> 53c5bda6bcf19e17fd0f7f9a2901a5b588388288
+=======
+        <CandidateLayout FirstName={this.state.FirstName}/>
+        // <CandidateLayout/>
+>>>>>>> 37c4e1e2f3c41d535b41f839d3ee3e228005c8f3
       );
     }
   }
