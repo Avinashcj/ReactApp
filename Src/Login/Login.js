@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CandidateLayout from '../Layouts/CandidateLayout.js'
+import CandidateLayout from '../Layouts/CandidateLayout.js';
+import Dashboard from '../Dashboard/Dashboard.js';
 class Login extends Component {
 
   constructor(){
@@ -166,13 +167,10 @@ class Login extends Component {
     /* Checking if the auth token is not empty directly sending the user to Home screen */
     else {
       return (
-        // <Home />
-
         
         <CandidateLayout FirstName={this.state.FirstName}/>
-        // <View>
-        //   <Text  >Welcome {this.state.FirstName}</Text>
-        // </View>
+        // <Dashboard/>
+        
       );
     }
   }

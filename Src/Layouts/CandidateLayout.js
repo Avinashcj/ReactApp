@@ -12,14 +12,14 @@ function HomeScreen() {
   );
 }
 
-
-
 function SettingsScreen() {
+  const value =  AsyncStorage.getItem('@storage_Key')
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
      <View>
             <Text  >Welcome</Text>
-            <Button onPress={AsyncStorage.clear()}>
+          
+             <Button onPress={alert(value)}>
               <Text>Clear Async Storage</Text>
             </Button>
     </View>
