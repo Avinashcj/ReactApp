@@ -1,24 +1,18 @@
-import 'react-native-gesture-handler';
 import React, { Component } from 'react'
 import { StyleSheet,View, Text, Alert, Button, TextInput, TouchableOpacity,StatusBar,Image ,ImageBackground} from 'react-native';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CandidateLayout from '../Layouts/CandidateLayout.js'
-import ForgotPassword from '../ForgotPassword/ForgotPassword.js';
-import { createStackNavigator } from '@react-navigation/stack';
-import { Linking } from 'react-native';
+
+
 import { BrowserRouter } from 'react-router-dom';
-const Stack = createStackNavigator();
 
+class ForgotPassword extends Component {
 
-class Login extends Component {
+ 
+  
+  
 
-
-  routeChange=()=> {
-    let path = '/ForgotPassword';
-    let history = useHistory();
-    history.push(path);
-  }
 
   constructor(){
     super()
@@ -58,7 +52,7 @@ class Login extends Component {
         this.setState({ token: data.token });
         var token = data.token;
         var decoded = jwt_decode(token);
-        //alert(decoded);
+        alert(decoded);
 
       });
   }
@@ -86,13 +80,10 @@ class Login extends Component {
           this.setState({ token: data.token });
           var token = data.token;
           var decoded = jwt_decode(token);
-          console.log(decoded.id);
-          //this.storeData(this.decoded);
           AsyncStorage.setItem('@storage_Key', decoded.aud)
-         
+          const value = AsyncStorage.getItem('@storage_Key')
           this.setState({FirstName:decoded.aud})
-         // alert(this.state.FirstName);
-
+          this.username = this.state.FirstName;
         });
 
     }
@@ -108,23 +99,15 @@ class Login extends Component {
       const value = await AsyncStorage.getItem('@storage_Key')
       alert(value);
     } catch (e) {
-      // saving error
     }
   }
 
-
-  
-
-
   render() {
-  
-  
-
-
-
+    window.name =this.username;
     //If auth token is not present
     if (this.state.token == '') {
       return (
+
         <View style={styles.container}>
                 <View style={styles.backgroundContainer}>
                     <Image style={styles.bakcgroundImage} source={require('../../assets/login-bg.jpg')} />
@@ -159,60 +142,14 @@ class Login extends Component {
           />
         </View>
    
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-           // placeholder="Password."
-            placeholderTextColor="#003f5c"
-            // secureTextEntry={true}
-            // onChangeText={(password) => setPassword(password)}
-
-            placeholder="Enter password"
-                onChangeText={TextInputValue =>
-                  this.setState({ password: TextInputValue })}
-                underlineColorAndroid='transparent'
-                secureTextEntry={true}
-
-
-          />
-        </View>
-      
-
-       
-
-
-        <TouchableOpacity>
-           <Text style={styles.forgot_button} onPress={() => Linking.openURL('/ForgotPassword')}>Forgot Password?</Text>  
-
-
-
-
-          
-
-           
-
-
-
-
-           
-
-
-
-
-
-      
-          
-
-
-
-        </TouchableOpacity>
+     
    
-
+      
 
 <TouchableOpacity  style={styles.loginBtn} onPress={this.Login.bind(this)}>
              <View>
                <Text style={styles.loginText}>
-                 Login </Text>
+                 Submit </Text>
             </View>
          </TouchableOpacity> 
      
@@ -238,8 +175,8 @@ class Login extends Component {
     /* Checking if the auth token is not empty directly sending the user to Home screen */
     else {
       return (
+
         <CandidateLayout FirstName={this.state.FirstName}/>
-        // <CandidateLayout/>
       );
     }
   }
@@ -292,6 +229,12 @@ const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: "#FF1493",
   },
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'flex-end',
+// },
 backgroundContainer: {
     flex: 1,
     position: 'absolute',
@@ -311,4 +254,4 @@ loginButton: {
 });
 
 
-export default Login;
+export default ForgotPassword;
