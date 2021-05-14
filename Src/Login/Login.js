@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react'
+<<<<<<< Updated upstream
 import { StyleSheet,View, Text, Alert, Button, TextInput, TouchableOpacity,StatusBar,Image ,ImageBackground} from 'react-native';
 import jwt_decode from 'jwt-decode';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,6 +26,12 @@ class Login extends Component {
     this.Login = this.Login.bind(this);
     this.storeData = this.storeData.bind(this);
   }
+=======
+import { View, Text, Alert, Button, TextInput, TouchableOpacity } from 'react-native';
+import CandidateLayout from '../Layouts/CandidateLayout.js';
+// import Home from './Home';
+  class Login extends Component {
+>>>>>>> Stashed changes
   state = {
     username: '',
     password: '',
@@ -84,6 +91,7 @@ class Login extends Component {
         .then(response => response.json())
         .then(data => {
           this.setState({ token: data.token });
+<<<<<<< Updated upstream
           var token = data.token;
           var decoded = jwt_decode(token);
           console.log(decoded.id);
@@ -91,8 +99,16 @@ class Login extends Component {
           AsyncStorage.setItem('@storage_Key', decoded.aud)
          
           this.setState({FirstName:decoded.aud})
+<<<<<<< HEAD
          // alert(this.state.FirstName);
+=======
+          //alert(this.state.FirstName);
+>>>>>>> b3ffd420c7c46121ab5cae9a889895ab02c91062
 
+=======
+          alert("You have succesfully signed up");
+<CandidateLayout/>
+>>>>>>> Stashed changes
         });
 
     }
@@ -238,8 +254,16 @@ class Login extends Component {
     /* Checking if the auth token is not empty directly sending the user to Home screen */
     else {
       return (
+<<<<<<< Updated upstream
         <CandidateLayout FirstName={this.state.FirstName}/>
         // <CandidateLayout/>
+=======
+        // <Home />
+        // <View>
+        //   <Text>Login Successful</Text>
+        // </View>
+        <CandidateLayout></CandidateLayout>
+>>>>>>> Stashed changes
       );
     }
   }
